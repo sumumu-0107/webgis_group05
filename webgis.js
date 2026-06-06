@@ -214,12 +214,26 @@ function updateLegend() {
       html += `<div class="legend-item"><strong>${item.title}</strong>`;
 
       if (item.type === "wms") {
-        html += `<img src="${getWMSLegend(item.layerName)}" alt="${item.title} legend">`;
-      }
+  html += `
+    <img 
+      class="legend-img"
+      src="${getWMSLegend(item.layerName)}" 
+      alt="${item.title} legend"
+      style="max-width:220px; width:auto; height:auto; display:block;"
+    >
+  `;
+}
 
-      if (item.type === "image") {
-        html += `<img src="${item.image}" alt="${item.title} legend">`;
-      }
+if (item.type === "image") {
+  html += `
+    <img 
+      class="legend-img bivariate-legend-img"
+      src="${item.image}" 
+      alt="${item.title} legend"
+      style="width:220px; max-width:220px; height:auto; display:block;"
+    >
+  `;
+}
 
       html += `</div>`;
     }
