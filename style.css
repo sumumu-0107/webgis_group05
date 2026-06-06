@@ -1063,3 +1063,28 @@ footer {
   color: #1d5c63;
   font-size: 13px;
 }
+/* =========================
+   Manual legend color blocks
+   ========================= */
+
+.manual-legend {
+  margin-top: 6px;
+}
+
+.manual-legend div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+  color: #333;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.manual-legend span {
+  display: inline-block !important;
+  width: 22px !important;
+  height: 16px !important;
+  border: 1px solid #cfd8dc;
+  flex-shrink: 0;
+}
