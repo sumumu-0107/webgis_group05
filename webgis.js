@@ -123,6 +123,115 @@ mapNote.onAdd = function () {
     <strong>Group 05 WebGIS</strong><br>
     Turn WMS layers on/off using the layer control.<br>
     WMS URL: ${wmsUrl}
+    // ===============================
+// Dynamic legend control
+// ===============================
+
+const legendControl = L.control({ position: "bottomright" });
+
+legendControl.onAdd = function () {
+  const div = L.DomUtil.create("div", "legend-control");
+  div.innerHTML = "<h4>Legend</h4><p>Select a layer to show legend.</p>";
+  return div;
+};
+
+legendControl.addTo(map);
+
+// GeoServer WMS legend URL
+function getWMSLegend(layerName) {
+  return (
+    wmsUrl +
+    "?REQUEST=GetLegendGraphic" +
+    "&VERSION=1.0.0" +
+    "&FORMAT=image/png" +
+    "&WIDTH=20" +
+    "&HEIGHT=20" +
+    "&LAYER=" +
+    encodeURIComponent(layerName)
+  );
+}
+
+// Legend list
+const legendItems = [
+  {
+    layer: no2December,
+    title: "NO₂ December 2023",
+    type: "wms",
+    layerName: "gisgeoserver_05:Greece_CAMS_no2_2023_12"
+  },
+  {
+    layer: no2Average,
+    title: "NO₂ Annual Average 2023",
+    type: "wms",
+    layerName: "gisgeoserver_05:Greece_average_no2_2023"
+  },
+  {
+    layer: no2Class,
+    title: "NO₂ Concentration Classes 2023",
+    type: "wms",
+    layerName: "gisgeoserver_05:Greece_no2_concentration_map_2023"
+  },
+  {
+    layer: no2Amac,
+    title: "NO₂ AMAC 2021–2023",
+    type: "wms",
+    layerName: "gisgeoserver_05:Greece_no2_2021_2023_AMAC_map"
+  },
+  {
+    layer: builtAreaChange,
+    title: "Built Area Change 2021–2023",
+    type: "wms",
+    layerName: "gisgeoserver_05:Greece_built_area_mask_2021_2023_4326"
+  },
+  {
+    layer: landCoverChange,
+    title: "Land Cover Change 2021–2023",
+    type: "wms",
+    layerName: "gisgeoserver_05:Greece_LCC_2021_2023_4326"
+  },
+  {
+    layer: no2Bivariate,
+    title: "NO₂–Population Bivariate 2023",
+    type: "image",
+    image: "img/NO2/legend_bivariate_5x5.png"
+  }
+];
+
+function updateLegend() {
+  const legendDiv = document.querySelector(".legend-control");
+  if (!legendDiv) return;
+
+  let html = "<h4>Legend</h4>";
+  let hasLayer = false;
+
+  legendItems.forEach((item) => {
+    if (map.hasLayer(item.layer)) {
+      hasLayer = true;
+      html += `<div class="legend-item"><strong>${item.title}</strong>`;
+
+      if (item.type === "wms") {
+        html += `<img src="${getWMSLegend(item.layerName)}" alt="${item.title} legend">`;
+      }
+
+      if (item.type === "image") {
+        html += `<img src="${item.image}" alt="${item.title} legend">`;
+      }
+
+      html += `</div>`;
+    }
+  });
+
+  if (!hasLayer) {
+    html += "<p>Select a layer to show legend.</p>";
+  }
+
+  legendDiv.innerHTML = html;
+}
+
+map.on("overlayadd", updateLegend);
+map.on("overlayremove", updateLegend);
+
+updateLegend();
   `;
   return div;
 };
