@@ -1,0 +1,52 @@
+PM10 Workflow
+1. Data Collection and Study Area Preparation
+
+The PM10 analysis started with the collection of CAMS reanalysis data, ESRI Land Cover data, WorldPop population data, and GAUL Level 2 administrative boundaries for Greece. The CAMS dataset provided monthly PM10 concentration raster layers for 2021 and 2023, while the land cover data were used to identify built area transitions over the same period. The population raster from WorldPop was used to evaluate population exposure to different PM10 concentration classes. PM10, or particulate matter with an aerodynamic diameter of 10 micrometres or less, originates from a wide range of sources including road traffic, industrial emissions, agricultural activity, and long-range transport of mineral dust such as Saharan dust events. Before any spatial analysis, all datasets were clipped to the Greece study area to reduce file size and ensure that all layers represented the same geographic extent.
+
+2. Coordinate Reference System and Raster Alignment
+
+After importing the datasets into QGIS, the coordinate reference systems of all layers were checked and harmonized. The pollutant rasters, land cover rasters, population raster, and administrative boundary layers needed to be aligned in the same spatial framework. Reprojection and clipping tools were applied where necessary to make sure that all layers overlapped correctly. This step was especially important for PM10 because the CAMS raster has a coarser spatial resolution than some of the ancillary datasets, and any misalignment could introduce errors during raster calculation and zonal statistics. A consistent CRS and spatial extent also ensured that the exported maps could be displayed correctly in both QGIS Layout and GeoServer.
+
+3. PM10 December 2023 Map Generation
+
+The monthly PM10 raster for December 2023 was clipped to the Greece boundary and visualized as a continuous concentration map. This map was produced to show the spatial distribution of PM10 during a specific winter month, providing a seasonal snapshot before the annual average was calculated. A continuous color ramp was applied so that areas with higher PM10 concentrations could be visually distinguished from lower concentration areas. The December monthly map is useful for understanding short-term variability, including the influence of winter heating, calm wind conditions, and potential Saharan dust intrusions that may elevate concentrations in certain regions. The map was exported using QGIS Layout with a title, legend, scale bar, and north arrow.
+
+4. PM10 Annual Average Map Calculation
+
+The 2023 annual average PM10 concentration map was calculated from the twelve monthly CAMS PM10 raster layers. Raster calculation tools were used to aggregate the monthly values into one annual mean raster representing the average PM10 concentration across Greece for 2023. This annual average layer served as the primary input for the concentration classification, zonal statistics, and population exposure analysis. The resulting map shows that PM10 concentrations in Greece are not uniformly distributed, with higher values generally appearing in northern mainland areas and in localized hotspots associated with industrial zones and transport corridors. The annual average map was styled with a continuous color ramp and exported as a static map for the website.
+
+5. PM10 Concentration Classification
+
+The annual average PM10 map was reclassified into concentration classes using predefined air quality thresholds. The visible classes in Greece were Class 1, Class 2, and Class 3, corresponding to increasing concentration ranges of ≤10 µg/m³, >10–25 µg/m³, and >25–40 µg/m³ respectively. The reclassification converted a continuous raster into a categorical raster, making it easier to compare air quality conditions across the country. The WHO annual mean guideline for PM10 is 15 µg/m³, meaning that areas in Class 2 and above may exceed recommended safe levels under unfavourable conditions. This classified map was also required for the subsequent bivariate analysis with population exposure classes. The final concentration class map was exported with a categorical legend showing the PM10 class ranges in µg/m³.
+
+6. Land Cover Change and Built Area Transition Extraction
+
+Land cover change was analyzed by comparing ESRI land cover rasters from 2021 and 2023. Since the PM10 analysis included urban-related and construction-related emission sources, the built area transition classes were extracted from the full land cover change raster. Three built area categories were identified: Stable Built Area, Built Area Gain, and Built Area Loss. This simplification made the land cover transition map easier to interpret and more directly relevant to the PM10 change analysis. Built area transitions are important for PM10 because construction activities, demolition, road dust, and changes in traffic patterns can all contribute to elevated PM10 levels in transition zones.
+
+7. PM10 Annual Mean Aggregation Change Analysis
+
+The PM10 Annual Mean Aggregation Change (AMAC) map was produced by comparing PM10 annual mean concentration values between 2021 and 2023. Raster calculation was used to subtract the 2021 annual mean PM10 layer from the 2023 annual mean PM10 layer. Negative values represent a decrease in PM10 concentration, while positive values represent an increase. The output was classified into several change categories based on the magnitude of the difference. The resulting AMAC map helps identify where PM10 conditions improved or worsened between 2021 and 2023, and whether any areas show strong increases that could indicate new emission sources or changing meteorological conditions such as more frequent dust transport episodes.
+
+8. Zonal Statistics for Built Area Transitions
+
+To quantify the relationship between PM10 change and built area transitions, zonal statistics were calculated in QGIS. The built area transition layer was used as the zone layer, and the PM10 AMAC raster was used as the value raster. For each built area transition category, the mean, minimum, and maximum PM10 change values were calculated. This step transformed the visual map information into numerical statistics that could be compared across Stable Built Area, Built Area Gain, and Built Area Loss zones. The resulting statistics provide insight into whether construction activities or land conversion events are associated with higher PM10 change values. The statistics were visualized as a bar chart for the Results page.
+
+9. Population Classification for Exposure Analysis
+
+The WorldPop population raster for 2023 was processed to create five population classes. Before classification, NoData values inside the study area were handled carefully so that zero-population areas were not confused with missing data. Quantile-based classification was used to divide the population values into five exposure classes. This step was necessary because the population exposure analysis requires a simplified population layer that can be combined with PM10 concentration classes at the administrative zone level. Unlike NO2, which is strongly linked to traffic and has a clearer urban gradient, PM10 exposure must also account for rural and semi-rural populations that may be affected by wind-blown dust and agricultural emissions.
+
+10. PM10–Population Bivariate Map Creation
+
+The PM10 bivariate map was created by combining the PM10 concentration class and the population class at the GAUL Level 2 administrative scale. Zonal statistics were first used to calculate the median population class and the maximum PM10 concentration class for each administrative region. A new integer field named bivariate was then created using the formula pol_class_max * 10 + pop_class_median. In this encoding, the first digit represents the PM10 concentration class and the second digit represents the population class. The predefined 5×5 bivariate QML style was applied to visualize the interaction between PM10 air pollution and population exposure. The resulting bivariate map shows which regions combine elevated PM10 levels with high population counts, which is more informative than showing concentration or population density alone.
+
+11. Population Exposure Summary Preparation
+
+To summarize PM10 population exposure, the bivariate layer was dissolved by pollutant concentration class. This produced a simplified vector layer with a maximum of five features, one for each PM10 concentration class. Zonal statistics were then applied again using the original population raster to calculate the total population exposed to each PM10 class. The resulting values were used to create a pie chart showing the percentage of the population exposed to different PM10 concentration classes. This summary is essential because the spatial extent of a concentration class does not directly reflect the number of people affected, especially when high-concentration areas overlap with densely populated urban zones.
+
+12. Map Layout Export for Website Results
+
+After all PM10 analysis layers were produced, the main maps were exported using QGIS Layout. Each static map was designed with a map title, legend, scale bar, and north arrow to meet standard cartographic requirements. The exported PM10 maps included the December 2023 monthly map, annual average map, concentration class map, annual mean aggregation change map, zonal statistics map, and bivariate exposure map. The bar chart for zonal statistics was exported separately as a statistical graphic. All images were saved with short English filenames so that they could be easily referenced in the website code and uploaded to the repository.
+
+13. GeoServer Publishing and WebGIS Preparation
+
+The final PM10 layers were prepared for publication in GeoServer. The key layers included the PM10 concentration class raster, PM10 annual mean aggregation change raster, built area transition layer, and PM10–population bivariate vector layer. Appropriate styles were applied before publishing, including the predefined 5×5 bivariate style required for the exposure map. After publication, WMS links were tested and recorded for use in the Leaflet WebGIS page. This made it possible to display the PM10 results interactively on the website alongside the static maps and written interpretation, providing both spatial detail and contextual information for users exploring PM10 air quality in Greece.
