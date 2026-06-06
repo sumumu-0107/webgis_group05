@@ -40,6 +40,87 @@
   border: 1px solid #dbe6e3;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
+
+/* Hide Leaflet default controls */
+.leaflet-top,
+.leaflet-bottom,
+.map-note,
+.legend-control {
+  display: none !important;
+}
+
+/* New map controls panel below the map */
+.map-controls-panel {
+  background: #ffffff;
+  border: 1px solid #dbe6e3;
+  border-radius: 18px;
+  padding: 24px;
+  margin: 0 0 24px 0;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.045);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.controls-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.controls-section h4 {
+  margin: 0 0 12px 0;
+  color: #1d5c63;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#layer-control-container {
+  flex: 1;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+#layer-control-container label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #263238;
+}
+
+#layer-control-container input[type="checkbox"],
+#layer-control-container input[type="radio"] {
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+#legend-container {
+  flex: 1;
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 12px;
+  background: #f9faf9;
+  border-radius: 8px;
+  border: 1px solid #edf1ef;
+}
+
+#legend-container img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+/* Responsive grid */
+@media (max-width: 768px) {
+  .map-controls-panel {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -179,10 +260,22 @@ body {
   color: #7a8789;
 }
 
-.workflow-grid {
+.tab-panel {
+  display: none;
+}
+
+.workflow-grid > .tab-panel.active {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 22px;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.workflow-grid {
+  display: block;
 }
 
 .card {
@@ -1029,23 +1122,23 @@ footer {
 /* Force WebGIS legend image size */
 .legend-control {
   background: rgba(255, 255, 255, 0.96);
-  padding: 14px 16px;
+  padding: 12px 14px;
   border-radius: 12px;
   border: 1px solid #dbe6e3;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
-  width: 260px;
-  max-width: 260px;
-  max-height: 420px;
+  width: 180px;
+  max-width: 180px;
+  max-height: 260px;
   overflow-y: auto;
-  font-size: 14px;
+  font-size: 13px;
   color: #263238;
 }
 
 .legend-control img,
 .legend-img,
 .bivariate-legend-img {
-  max-width: 220px !important;
-  width: 220px !important;
+  max-width: 150px !important;
+  width: 150px !important;
   height: auto !important;
   display: block !important;
   object-fit: contain;
