@@ -1,0 +1,44 @@
+NO₂ Results
+1. NO₂ Concentration in December 2023
+
+The December 2023 NO₂ concentration map shows that NO₂ levels were unevenly distributed across Greece. Higher concentration values appear mainly around major urban and transport-related areas, especially around the Athens metropolitan area and parts of northern Greece. In contrast, many island and rural regions show lower NO₂ values. This pattern suggests that short-term NO₂ concentration is strongly influenced by urban activity, traffic intensity, and regional emission sources. The December map provides a monthly snapshot before the annual average concentration was calculated.
+
+2. Annual Average NO₂ Concentration in 2023
+
+The annual average NO₂ map shows the general spatial pattern of NO₂ concentration across Greece in 2023. The highest average values are concentrated around large urban areas, especially the Athens region, while lower values are found in less urbanized mainland areas and many islands. Compared with the monthly December map, the annual average map smooths short-term fluctuations and highlights more stable spatial patterns. This makes it more suitable for classification and population exposure analysis. The range of values also shows that NO₂ concentration varies clearly between urbanized and non-urbanized areas.
+
+3. NO₂ Concentration Classes in 2023
+
+The NO₂ concentration class map divides the annual average concentration into air quality classes. In Greece, the visible NO₂ classes are mainly Class 1, Class 2, and Class 3, while Class 4 and Class 5 do not appear in the mapped result. Most of the country falls into Class 1, indicating relatively low NO₂ concentration levels below or equal to 10 µg/m³. Class 2 and Class 3 areas are more limited and are mainly located around urban regions. This classification makes the spatial pattern easier to interpret and provides the pollutant class input for the bivariate population exposure map.
+
+4. NO₂ Annual Mean Aggregation Change, 2021–2023
+
+The NO₂ Annual Mean Aggregation Change map shows both increases and decreases in NO₂ concentration between 2021 and 2023. Some areas in western and northern Greece show increases, while other areas show slight decreases or stable conditions. Stronger increases are visible in localized zones, suggesting that NO₂ change was not uniform across the country. The mixed pattern indicates that regional changes in activity, traffic, land use, and background pollution may have influenced NO₂ concentration differently. This map is important because it shows not only where NO₂ was high in 2023, but also where the situation changed compared with 2021.
+
+5. Built Area Change in Greece, 2021–2023
+
+The built area change map identifies Stable Built Area, Built Area Gain, and Built Area Loss between 2021 and 2023. Most built-up pixels are classified as Stable Built Area, showing that existing urban areas remained largely unchanged during the study period. Built Area Gain and Built Area Loss appear as scattered and localized changes rather than large continuous zones. These transition classes are useful because NO₂ emissions are often related to urban development, transport infrastructure, and human activity. Therefore, the built area change layer was used as the basis for comparing NO₂ change statistics across different urban transition types.
+
+6. NO₂ Change Statistics by Built Area Transition Type
+
+The bar chart compares the mean, minimum, and maximum NO₂ change values for Stable Built Area, Built Area Gain, and Built Area Loss. Built Area Loss has the highest mean NO₂ change, approximately 1.173 µg/m³, followed by Stable Built Area at about 0.626 µg/m³ and Built Area Gain at about 0.131 µg/m³. This means that, on average, NO₂ increased most in areas classified as Built Area Loss. However, Stable Built Area shows the highest maximum value, reaching 7.286 µg/m³, which indicates that some stable urban areas experienced strong localized NO₂ increases. The negative minimum values in Stable Built Area and Built Area Gain also show that some areas experienced NO₂ decreases between 2021 and 2023.
+
+7. NO₂–Population Bivariate Map
+
+The NO₂–Population bivariate map combines NO₂ concentration class and population class at the administrative zone level. The first digit of each bivariate value represents the NO₂ class, while the second digit represents the population class. In the Greece NO₂ result, the visible combinations include 13, 14, 23, and 35, meaning that several regions have low-to-medium NO₂ levels but different population exposure levels. The class 35 areas are especially important because they combine a higher NO₂ class with a high population class. This map helps identify where air pollution and population exposure overlap, rather than only showing pollution concentration alone.
+
+8. Bivariate Legend Interpretation
+
+The 5×5 bivariate legend explains how the two variables are combined in the bivariate exposure map. The vertical axis represents pollutant concentration, increasing from low to high, while the horizontal axis represents population count, also increasing from low to high. Colors toward the upper-right part of the legend indicate areas where both pollutant concentration and population count are relatively high. In the NO₂ map, this legend helps interpret why some regions require more attention even if they are not the largest regions spatially. The legend is essential because the bivariate map cannot be correctly understood from color alone.
+
+9. Population Exposure to NO₂ Concentration Classes
+
+The NO₂ population exposure pie chart shows how the population is distributed across the NO₂ concentration classes. The results indicate that 36.24% of the population is exposed to Class 1, 26.81% to Class 2, and 36.96% to Class 3. This means that the largest share of the population falls in Class 3, although Class 1 has a very similar proportion. The result suggests that a considerable part of the population is exposed to higher NO₂ concentration classes, even though much of the territory is mapped as low concentration. This difference highlights why population-weighted exposure analysis is necessary in addition to simple spatial mapping.
+
+10. Overall NO₂ Interpretation
+
+Overall, the NO₂ results show a clear relationship between urbanization, population distribution, and air pollution exposure in Greece. The concentration maps show that higher NO₂ values are spatially concentrated around urban areas, while the bivariate map shows where these pollution levels overlap with population density. The built area transition analysis suggests that NO₂ changes are not only related to newly developed areas, but also to stable and changing urban zones. The population exposure result further shows that spatial area and exposed population are not the same: a small high-concentration area may still affect a large number of people. Therefore, combining pollutant maps, land cover change, zonal statistics, and population exposure provides a more complete understanding of NO₂ conditions in Greece.
+
+11. Short Summary for Website Card
+
+The NO₂ analysis shows that higher concentrations are mainly concentrated around urbanized regions, while many rural and island areas remain in lower concentration classes. Between 2021 and 2023, NO₂ changes were spatially uneven, with both increases and decreases across different parts of Greece. Built Area Loss and Stable Built Area showed relatively higher NO₂ change values compared with Built Area Gain. The population exposure analysis indicates that 36.96% of the population was exposed to NO₂ Class 3, 26.81% to Class 2, and 36.24% to Class 1. These results highlight the importance of combining air quality data with land cover transition and population exposure analysis.
