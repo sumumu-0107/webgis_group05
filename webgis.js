@@ -170,11 +170,17 @@ const legendItems = [
     layerName: "gisgeoserver_05:Greece_average_no2_2023"
   },
   {
-    layer: no2Class,
-    title: "NO₂ Concentration Classes 2023",
-    type: "wms",
-    layerName: "gisgeoserver_05:Greece_no2_concentration_map_2023"
-  },
+  layer: no2Class,
+  title: "NO₂ Concentration Classes 2023",
+  type: "html",
+  html: `
+    <div class="manual-legend">
+      <div><span style="background:#30c9c7;"></span>1 = ≤10 µg/m³</div>
+      <div><span style="background:#159bd3;"></span>2 = >10–25 µg/m³</div>
+      <div><span style="background:#1f25d8;"></span>3 = >25–40 µg/m³</div>
+    </div>
+  `
+},
   {
     layer: no2Amac,
     title: "NO₂ AMAC 2021–2023",
@@ -213,7 +219,7 @@ function updateLegend() {
       hasLayer = true;
       html += `<div class="legend-item"><strong>${item.title}</strong>`;
 
-      if (item.type === "wms") {
+     if (item.type === "wms") {
   html += `
     <img 
       class="legend-img"
@@ -233,6 +239,10 @@ if (item.type === "image") {
       style="width:220px; max-width:220px; height:auto; display:block;"
     >
   `;
+}
+
+if (item.type === "html") {
+  html += item.html;
 }
 
       html += `</div>`;
