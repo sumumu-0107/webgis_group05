@@ -971,4 +971,58 @@ footer {
   .tool-grid {
     grid-template-columns: 1fr;
   }
+  
+}
+/* =========================
+   WebGIS legend control
+   ========================= */
+
+.legend-control {
+  background: rgba(255, 255, 255, 0.96);
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #dbe6e3;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  max-width: 260px;
+  max-height: 420px;
+  overflow-y: auto;
+  font-size: 14px;
+  color: #263238;
+}
+
+.legend-control h4 {
+  margin: 0 0 10px;
+  color: #18353c;
+  font-size: 16px;
+}
+
+.legend-control p {
+  margin: 0;
+  color: #52666b;
+}
+
+.legend-item {
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #edf1ef;
+}
+
+.legend-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.legend-item strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #1d5c63;
+  font-size: 13px;
+}
+
+.legend-item img {
+  display: block;
+  max-width: 220px;
+  height: auto;
+  border: none;
+  background: white;
 }
