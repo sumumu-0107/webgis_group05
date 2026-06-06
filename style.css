@@ -1063,22 +1063,3 @@ footer {
   color: #1d5c63;
   font-size: 13px;
 }
-.manual-legend {
-  margin-top: 6px;
-}
-
-.manual-legend div {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 6px 0;
-  color: #333;
-  font-size: 14px;
-}
-
-.manual-legend span {
-  display: inline-block;
-  width: 22px;
-  height: 16px;
-  border: 1px solid #cfd8dc;
-}
