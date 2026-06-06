@@ -1026,3 +1026,40 @@ footer {
   border: none;
   background: white;
 }
+/* Force WebGIS legend image size */
+.legend-control {
+  background: rgba(255, 255, 255, 0.96);
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #dbe6e3;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  width: 260px;
+  max-width: 260px;
+  max-height: 420px;
+  overflow-y: auto;
+  font-size: 14px;
+  color: #263238;
+}
+
+.legend-control img,
+.legend-img,
+.bivariate-legend-img {
+  max-width: 220px !important;
+  width: 220px !important;
+  height: auto !important;
+  display: block !important;
+  object-fit: contain;
+}
+
+.legend-item {
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #edf1ef;
+}
+
+.legend-item strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #1d5c63;
+  font-size: 13px;
+}
