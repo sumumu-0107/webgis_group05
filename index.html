@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Greece Air Quality WebGIS</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+</head>
+
+<body>
+  <header class="site-header">
+  <nav class="navbar">
+    <div class="logo">AIR QUALITY IN GREECE</div>
+    <div class="nav-links">
+      <a href="#home">home</a>
+      <a href="#workflow">workflow</a>
+      <a href="#results">results</a>
+      <a href="#webgis">webgis</a>
+      <a href="#" class="github-link">GitHub</a>
+    </div>
+  </nav>
+</header>
+
+<section class="landing" id="home">
+  <div class="landing-content">
+    <p class="landing-kicker">HERE WE ARE</p>
+    <h1>GREECE</h1>
+    <h2>AIR QUALITY ANALYSIS AND MONITORING</h2>
+    <p class="group-name">By Group 05</p>
+    <a class="continue-btn" href="#about">Continue</a>
+  </div>
+</section>
+
+  <main>
+    <section class="section home-summary" id="about">
+  <h2>About This Project</h2>
+  <p class="lead-text">
+    This project analyzes air quality conditions in Greece and presents the results through
+    a WebGIS platform. The study integrates pollutant concentration data, land cover change,
+    population distribution and administrative boundaries to assess both spatial pollution
+    patterns and population exposure.
+  </p>
+
+  <div class="summary-grid">
+    <article class="summary-card">
+      <span class="card-number">01</span>
+      <h3>Data Collection</h3>
+      <p>
+        The analysis uses CAMS pollutant rasters, ESRI Land Cover data, WorldPop population
+        data and GAUL Level 2 administrative boundaries. These datasets provide the basis
+        for pollutant mapping, land cover transition analysis and exposure assessment.
+      </p>
+    </article>
+
+    <article class="summary-card">
+      <span class="card-number">02</span>
+      <h3>Spatial Analysis</h3>
+      <p>
+        Raster clipping, reprojection, annual aggregation, reclassification, raster calculation
+        and zonal statistics were used to process the air quality and land cover datasets.
+        These steps convert raw spatial data into interpretable maps and charts.
+      </p>
+    </article>
+
+    <article class="summary-card">
+      <span class="card-number">03</span>
+      <h3>Exposure Assessment</h3>
+      <p>
+        Bivariate mapping combines pollutant concentration classes with population classes.
+        This method helps identify areas where high pollution levels overlap with dense
+        population, indicating higher exposure risk.
+      </p>
+    </article>
+  </div>
+<div class="data-tools">
+  <div class="data-tools-header">
+    <p class="eyebrow">Data and Tools</p>
+    <h2>Datasets and Processing Environment</h2>
+    <p>
+      The project combines satellite-derived pollutant data, land cover products,
+      population grids and administrative boundaries. QGIS was used for spatial
+      processing and layout design, while GeoServer and Leaflet were prepared for
+      WebGIS publication.
+    </p>
+  </div>
+
+  <div class="tool-grid">
+    <article>
+      <h3>CAMS Reanalysis</h3>
+      <p>Monthly pollutant rasters used to map NO₂, PM2.5 and PM10 concentration patterns.</p>
+    </article>
+
+    <article>
+      <h3>ESRI Land Cover</h3>
+      <p>Land cover rasters from 2021 and 2023 used to detect built area and land cover transitions.</p>
+    </article>
+
+    <article>
+      <h3>WorldPop</h3>
+      <p>Population raster data used to evaluate population exposure to pollutant concentration classes.</p>
+    </article>
+
+    <article>
+      <h3>GAUL Level 2</h3>
+      <p>Administrative boundaries used for zonal statistics and bivariate exposure mapping.</p>
+    </article>
+
+    <article>
+      <h3>QGIS</h3>
+      <p>Main GIS platform for clipping, reprojection, raster calculation, classification and map layouts.</p>
+    </article>
+
+    <article>
+      <h3>GeoServer + Leaflet</h3>
+      <p>GeoServer provides WMS services, while Leaflet is used to build the interactive WebGIS interface.</p>
+    </article>
+  </div>
+</div>
+  <div class="key-findings">
+    <h2>Key Findings</h2>
+    <p>
+      The NO₂ results show that higher concentrations are mainly concentrated around urban
+      and transport-related areas, especially near Athens and parts of northern Greece.
+      Built area transitions are spatially scattered, while NO₂ change is uneven across
+      the country. The bivariate exposure result shows that population distribution strongly
+      affects the interpretation of air quality risk.
+    </p>
+    <a class="outline-btn" href="#workflow">Explore the Workflow</a>
+  </div>
+</section>
+
+    <section class="section" id="workflow">
+  <div class="section-heading">
+    <p class="eyebrow">Methodology</p>
+    <h2>Workflow</h2>
+    <p>
+      The workflow explains how raw pollutant, land cover and population datasets were
+      processed into final maps, charts and WebGIS layers. Each step includes the main
+      operation, the tool used in QGIS, and the purpose of the processing.
+    </p>
+  </div>
+
+  <div class="pollutant-tabs">
+        <span class="tab active">NO₂</span>
+        <span class="tab pending">PM2.5 · Coming soon</span>
+        <span class="tab pending">PM10 · Coming soon</span>
+      </div>
+
+      <div class="workflow-grid">
+        <article class="card">
+          <h3>1. Data Collection and Study Area Preparation</h3>
+          <p>
+            The NO₂ analysis started with CAMS reanalysis data, ESRI Land Cover data,
+            WorldPop population data, and GAUL Level 2 administrative boundaries for Greece.
+            CAMS provided monthly NO₂ raster layers, while land cover data were used to identify
+            built area transitions between 2021 and 2023. WorldPop was used to evaluate population
+            exposure to NO₂ concentration classes. All datasets were clipped to the Greece study
+            area to reduce file size and ensure spatial consistency.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>2. CRS Checking and Raster Alignment</h3>
+          <p>
+            After importing the datasets into QGIS, the coordinate reference systems and spatial
+            extents were checked. The pollutant rasters, land cover rasters, population raster and
+            administrative boundary layers needed to overlap correctly before raster calculation and
+            zonal statistics. Reprojection and clipping tools were used where necessary. This step
+            prevented misalignment errors and ensured that the final maps could be displayed correctly
+            in QGIS Layout and GeoServer.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>3. Monthly and Annual NO₂ Processing</h3>
+          <p>
+            The December 2023 NO₂ raster was clipped to Greece and visualized as a monthly
+            concentration map. Then, the 2023 annual average NO₂ concentration map was calculated
+            from monthly CAMS raster layers. The annual average map smooths monthly variation and
+            provides a more stable representation of NO₂ distribution across the country. This annual
+            mean layer was later used for concentration classification and exposure analysis.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>4. NO₂ Concentration Classification</h3>
+          <p>
+            The annual average NO₂ map was reclassified into concentration classes using the lab air
+            quality thresholds. In Greece, the visible classes are mainly Class 1, Class 2 and Class 3.
+            Reclassification converted the continuous concentration raster into a categorical layer,
+            making the spatial pattern easier to interpret. This classified pollutant layer was also
+            required for the NO₂–population bivariate map.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>5. Built Area Transition Extraction</h3>
+          <p>
+            Land cover change was calculated by comparing ESRI Land Cover rasters from 2021 and 2023.
+            Because the NO₂ module focuses on urban-related pollution, the built area transition
+            classes were extracted from the full land cover change raster. Three transition categories
+            were used: Stable Built Area, Built Area Gain and Built Area Loss. This transition layer
+            was used as the zone layer for calculating NO₂ change statistics.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>6. NO₂ Change and Zonal Statistics</h3>
+          <p>
+            The NO₂ Annual Mean Aggregation Change map was produced by subtracting the 2021 annual
+            mean NO₂ layer from the 2023 annual mean NO₂ layer. Positive values indicate NO₂ increase,
+            while negative values indicate decrease. Zonal statistics were calculated using the built
+            area transition layer as zones and the NO₂ change raster as the value layer. Mean, minimum
+            and maximum change values were then visualized in a bar chart.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>7. Population Exposure and Bivariate Mapping</h3>
+          <p>
+            WorldPop 2023 population data were classified into five population classes. GAUL Level 2
+            administrative zones were then used to summarize the median population class and maximum
+            NO₂ concentration class. A new bivariate field was calculated using the formula
+            pol_class_max × 10 + pop_class_median. The predefined 5×5 bivariate style was applied
+            to visualize the overlap between NO₂ concentration and population exposure.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>8. GeoServer and WebGIS Preparation</h3>
+          <p>
+            The final NO₂ layers were prepared for GeoServer publication, including monthly NO₂,
+            annual average NO₂, concentration classes, AMAC, built area change, land cover change and
+            bivariate exposure layers. The local GeoServer preview confirmed that the layers could be
+            served through WMS. In the final website, these WMS layers will be connected to the
+            interactive WebGIS after publication on the online GeoServer.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+  <div class="section-heading">
+    <p class="eyebrow">Spatial Outputs</p>
+    <h2>Results</h2>
+    <p>
+      The results section presents the final NO₂ maps and charts generated from the analysis.
+      The interpretation focuses on spatial concentration patterns, annual change, built area
+      transition statistics and population exposure.
+    </p>
+  </div>
+
+  <div class="pollutant-tabs">
+        <span class="tab active">NO₂ Results</span>
+        <span class="tab pending">PM2.5 Results · Coming soon</span>
+        <span class="tab pending">PM10 Results · Coming soon</span>
+      </div>
+
+      <article class="result-block">
+        <h3>NO₂ Concentration in Greece, December 2023</h3>
+        <img src="img/no2/NO2_December_2023_map.png" alt="NO2 December 2023 map" />
+        <p>
+          The December 2023 NO₂ map shows that concentration values were unevenly distributed across
+          Greece. Higher values mainly appear around major urban and transport-related regions,
+          especially around the Athens metropolitan area and parts of northern Greece. In contrast,
+          many island and rural regions show lower values. This monthly map provides a snapshot of
+          short-term spatial variation before the annual average calculation.
+        </p>
+      </article>
+
+      <article class="result-block">
+        <h3>Annual Average NO₂ Concentration in Greece, 2023</h3>
+        <img src="img/no2/NO2_average_2023_map.png" alt="NO2 annual average map" />
+        <p>
+          The annual average NO₂ map highlights the stable spatial pattern of NO₂ concentration across
+          Greece in 2023. Higher values are concentrated around urbanized areas, while lower values
+          are distributed across rural and island regions. Compared with the December map, the annual
+          average smooths monthly fluctuations and is more suitable for classification and population
+          exposure analysis.
+        </p>
+      </article>
+
+      <article class="result-block">
+        <h3>NO₂ Concentration Classes in Greece, 2023</h3>
+        <img src="img/no2/NO2_concentration_map_2023.png" alt="NO2 concentration class map" />
+        <p>
+          The concentration class map divides annual average NO₂ into air quality classes. Greece
+          mainly contains Class 1, Class 2 and Class 3 values, while Class 4 and Class 5 do not appear
+          in the final map. Most of the country falls into Class 1, indicating relatively low NO₂
+          concentration levels. Class 2 and Class 3 areas are more limited and are mainly associated
+          with urban regions.
+        </p>
+      </article>
+
+      <article class="result-block">
+        <h3>NO₂ Annual Mean Aggregation Change, 2021–2023</h3>
+        <img src="img/no2/NO2_AMAC_2021_2023_map.png" alt="NO2 AMAC map" />
+        <p>
+          The NO₂ AMAC map shows both increases and decreases between 2021 and 2023. Some regions
+          show slight or moderate increases, while other areas remain stable or show decreases.
+          Stronger changes appear in localized zones rather than across the whole country. This result
+          indicates that NO₂ change was spatially uneven and may reflect differences in urban activity,
+          transport intensity and regional emission patterns.
+        </p>
+      </article>
+
+      <article class="result-block">
+        <h3>Built Area Change and NO₂ Change Statistics</h3>
+        <div class="double-img">
+          <img src="img/no2/Built_Area_Change_2021_2023_map.png" alt="Built area change map" />
+          <img src="img/no2/Greece_no2_zonal_statistics_2021_2023_bar.png" alt="NO2 zonal statistics bar chart" />
+        </div>
+        <p>
+          The built area change map identifies Stable Built Area, Built Area Gain and Built Area Loss
+          between 2021 and 2023. Most built-up pixels are classified as stable, while gain and loss
+          areas are more scattered and localized. The bar chart shows that Built Area Loss has the
+          highest mean NO₂ change, approximately 1.173 µg/m³, followed by Stable Built Area and Built
+          Area Gain. Stable Built Area also has the highest maximum value, suggesting that some
+          persistent urban areas experienced strong localized NO₂ increases.
+        </p>
+      </article>
+
+      <article class="result-block">
+        <h3>NO₂–Population Bivariate Exposure</h3>
+        <div class="double-img">
+          <img src="img/no2/NO2_bivariate_map_2023.png" alt="NO2 bivariate map" />
+          <img src="img/no2/legend_bivariate_5x5.png" alt="5x5 bivariate legend" />
+        </div>
+        <p>
+          The NO₂–Population bivariate map combines NO₂ concentration class and population class at
+          the GAUL Level 2 scale. The first digit of the bivariate value represents the NO₂ class,
+          while the second digit represents the population class. Visible combinations include 13,
+          14, 23 and 35, showing that regions with similar NO₂ classes can have different population
+          exposure levels. The Class 35 area is especially important because it combines a higher
+          NO₂ class with a high population class.
+        </p>
+      </article>
+
+      <article class="result-block">
+        <h3>Population Exposure to NO₂ Concentration Classes</h3>
+        <img src="img/no2/Greece_no2_2023_pie_chart.png" alt="NO2 population exposure pie chart" />
+        <p>
+          The population exposure pie chart summarizes how people are distributed across NO₂
+          concentration classes. The results show that 36.24% of the population is exposed to Class 1,
+          26.81% to Class 2 and 36.96% to Class 3. Although much of the territory is mapped as low
+          concentration, a considerable share of the population falls into higher NO₂ exposure classes.
+          This demonstrates why population-weighted exposure analysis is necessary in addition to
+          simple spatial mapping.
+        </p>
+      </article>
+    </section>
+
+  <section class="section" id="webgis">
+  <div class="section-heading">
+    <p class="eyebrow">Interactive Map</p>
+    <h2>WebGIS</h2>
+    <p>
+      The interactive map provides a layer-based view of the GeoServer WMS outputs.
+      Users can switch between pollutant layers, land cover change layers and exposure layers.
+    </p>
+  </div>
+
+ <div class="webgis-intro">
+  <h3>Interactive Air Quality WebGIS</h3>
+  <p>
+    This interactive map is designed to display the published GeoServer WMS layers
+    for NO₂, PM2.5 and PM10. The current version includes the NO₂ layer structure,
+    while PM2.5 and PM10 layers will be added after the other group members provide
+    their final GeoServer layer names.
+  </p>
+</div>
+
+<div class="webgis-dashboard">
+  <article>
+    <span>01</span>
+    <h4>Layer Switching</h4>
+    <p>
+      Users can turn different WMS layers on and off to compare pollutant concentration,
+      land cover change and exposure patterns.
+    </p>
+  </article>
+
+  <article>
+    <span>02</span>
+    <h4>Spatial Exploration</h4>
+    <p>
+      The map supports zooming and panning, allowing users to inspect spatial patterns
+      across mainland Greece and island regions.
+    </p>
+  </article>
+
+  <article>
+    <span>03</span>
+    <h4>GeoServer WMS</h4>
+    <p>
+      Final map layers are designed to be served through GeoServer WMS and displayed
+      directly in the web interface.
+    </p>
+  </article>
+</div>
+
+<div class="map-shell">
+  <div class="map-toolbar">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <p>Group 05 Interactive WebGIS · Greece Air Quality Layers</p>
+  </div>
+
+  <div id="map"></div>
+</div>
+
+<div class="webgis-note">
+  <h3>NO₂ WMS Layers Prepared for Integration</h3>
+  <ul>
+    <li>NO₂ December 2023</li>
+    <li>NO₂ Annual Average 2023</li>
+    <li>NO₂ Concentration Classes 2023</li>
+    <li>NO₂ AMAC 2021–2023</li>
+    <li>Built Area Change 2021–2023</li>
+    <li>Land Cover Change 2021–2023</li>
+    <li>NO₂–Population Bivariate 2023</li>
+  </ul>
+</div>
+</section>
+  </main>
+
+  <footer>
+    <p>GIS Lab · Greece Air Quality WebGIS · Group 05</p>
+  </footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="webgis.js"></script>
+</body>
+</html>

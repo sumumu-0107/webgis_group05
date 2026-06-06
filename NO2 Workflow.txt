@@ -1,0 +1,52 @@
+NO₂ Workflow
+1. Data Collection and Study Area Preparation
+
+The NO₂ analysis started with the collection of CAMS reanalysis data, ESRI Land Cover data, WorldPop population data, and GAUL Level 2 administrative boundaries for Greece. The CAMS dataset provided monthly NO₂ concentration raster layers, while the land cover data were used to identify built area transitions between 2021 and 2023. The population raster from WorldPop was used to evaluate population exposure to different NO₂ concentration classes. Before any spatial analysis, all datasets were clipped to the Greece study area to reduce file size and ensure that all layers represented the same geographic extent. This step was important because the later overlay, zonal statistics, and bivariate mapping required all input layers to be spatially consistent.
+
+2. Coordinate Reference System and Raster Alignment
+
+After importing the datasets into QGIS, the coordinate reference systems of all layers were checked and harmonized. The pollutant rasters, land cover rasters, population raster, and administrative boundary layers needed to be aligned in the same spatial framework. Reprojection and clipping tools were used where necessary to make sure that the layers overlapped correctly. This step prevented errors during raster calculation and zonal statistics, especially because the analysis combined raster data with vector administrative zones. A consistent CRS and spatial extent also ensured that the exported maps could be displayed correctly in both QGIS Layout and GeoServer.
+
+3. NO₂ December 2023 Map Generation
+
+The monthly NO₂ raster for December 2023 was clipped to the Greece boundary and visualized as a continuous concentration map. This map was used to show the spatial distribution of NO₂ during a specific month, before producing the annual average map. A continuous color ramp was applied so that higher NO₂ concentration areas could be visually distinguished from lower concentration areas. The December map was exported using QGIS Layout with a title, legend, scale bar, and north arrow. This figure provides an intermediate workflow result and helps explain how the raw monthly pollutant data were processed before annual aggregation.
+
+4. NO₂ Annual Average Map Calculation
+
+The 2023 annual average NO₂ concentration map was calculated from the monthly CAMS NO₂ raster layers. Raster calculation tools were used to aggregate the monthly values into one annual mean raster representing the average NO₂ concentration in Greece for 2023. This annual average layer served as the basis for the later concentration classification and population exposure analysis. The resulting map shows that NO₂ concentrations were not evenly distributed across Greece, with higher values generally appearing around more urbanized or densely populated regions. The annual average map was then styled with a continuous color ramp and exported as a static map for the website.
+
+5. NO₂ Concentration Classification
+
+The annual average NO₂ map was reclassified into concentration classes using the air quality class thresholds provided in the lab materials. For NO₂, the visible classes in Greece were Class 1, Class 2, and Class 3, corresponding to increasing concentration ranges. The reclassification converted a continuous raster into a categorical raster, making it easier to compare air quality conditions across the country. This classified map was also required for the later bivariate analysis with population classes. The final concentration class map was exported with a categorical legend showing the NO₂ class ranges in µg/m³.
+
+6. Land Cover Change and Built Area Transition Extraction
+
+Land cover change was analyzed by comparing ESRI land cover rasters from 2021 and 2023. Since the NO₂ analysis focused on urban-related pollution, the built area transition classes were extracted from the full land cover change raster. Three built area categories were identified: Stable Built Area, Built Area Gain, and Built Area Loss. This simplification made the land cover transition map easier to interpret and more directly related to the NO₂ analysis. The built area transition map was then used as the zone layer for calculating NO₂ change statistics.
+
+7. NO₂ Annual Mean Aggregation Change Analysis
+
+The NO₂ Annual Mean Aggregation Change map was produced by comparing NO₂ annual mean concentration values between 2021 and 2023. Raster calculation was used to subtract the 2021 annual mean NO₂ layer from the 2023 annual mean NO₂ layer. Negative values represent a decrease in NO₂ concentration, while positive values represent an increase. The output was classified into several change categories, including strong decrease, slight decrease, stable, slight increase, moderate increase, and strong increase. This map helped identify where NO₂ conditions improved or worsened during the study period.
+
+8. Zonal Statistics for Built Area Transitions
+
+To quantify the relationship between NO₂ change and built area transitions, zonal statistics were calculated in QGIS. The built area transition layer was used as the zone layer, and the NO₂ change raster was used as the value raster. For each built area transition category, the mean, minimum, and maximum NO₂ change values were calculated. This step transformed the visual map information into numerical statistics that could be compared across Stable Built Area, Built Area Gain, and Built Area Loss. The resulting statistics were exported and visualized as a bar chart for the Results page.
+
+9. Population Classification for Exposure Analysis
+
+The WorldPop population raster for 2023 was processed to create five population classes. Before classification, NoData values inside the study area were handled carefully so that zero-population areas were not confused with missing data. Quantile-based classification was used to divide the population values into meaningful exposure classes. This step was necessary because population exposure analysis requires a simplified population layer that can be combined with pollutant concentration classes. The final population class raster was later summarized within GAUL Level 2 administrative regions.
+
+10. NO₂–Population Bivariate Map Creation
+
+The NO₂ bivariate map was created by combining the NO₂ concentration class and the population class at the GAUL Level 2 administrative scale. Zonal statistics were first used to calculate the median population class and the maximum NO₂ concentration class for each administrative region. A new integer field named bivariate was then created using the formula pol_class_max * 10 + pop_class_median. In this code, the first digit represents the NO₂ class and the second digit represents the population class. The predefined 5×5 bivariate QML style from the lab material was applied to visualize the interaction between air pollution and population exposure.
+
+11. Population Exposure Pie Chart Preparation
+
+To summarize population exposure, the NO₂ bivariate layer was dissolved by pollutant concentration class. This produced a simplified vector layer with a maximum of five features, one for each NO₂ concentration class. Zonal statistics were then applied again using the original population raster to calculate the total population exposed to each NO₂ class. The resulting values were used to create a pie chart showing the percentage of the population exposed to different NO₂ concentration classes. This chart provides a clearer statistical summary of exposure than the bivariate map alone.
+
+12. Map Layout Export for Website Results
+
+After all NO₂ analysis layers were produced, the main maps were exported using QGIS Layout. Each static map was designed with a map title, legend, scale bar, and north arrow to meet standard cartographic requirements. The exported NO₂ maps included the December 2023 map, annual average map, concentration class map, annual mean aggregation change map, built area change map, and bivariate exposure map. The bar chart and pie chart were exported separately as statistical graphics. All images were saved with short English filenames so that they could be easily referenced in the website code.
+
+13. GeoServer Publishing and WebGIS Preparation
+
+The final NO₂ layers were prepared for publication in GeoServer. The key layers included the NO₂ concentration class raster, NO₂ annual mean aggregation change raster, built area transition layer, and NO₂–population bivariate vector layer. Appropriate styles were applied before publishing, especially the predefined 5×5 bivariate style required for the exposure map. After publication, WMS links were tested and recorded for use in the Leaflet WebGIS page. This made it possible to display the NO₂ results interactively on the website, alongside the static maps and written interpretation.
