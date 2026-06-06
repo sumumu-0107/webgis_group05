@@ -10,8 +10,7 @@ const wmsUrl = "https://www.gis-geoserver.polimi.it/geoserver/wms";
 // If you want to test with your local GeoServer inside the VM,
 // you can temporarily replace the line above with:
 // const wmsUrl = "http://localhost:8082/geoserver/wms";
-// 注意：localhost 只适用于打开网页的同一台机器。
-// 如果你在 Windows 主电脑打开网页，而 GeoServer 在虚拟机里，localhost 不一定能用。
+
 
 const map = L.map("map", {
   center: [39.1, 22.5],
@@ -123,6 +122,11 @@ mapNote.onAdd = function () {
     <strong>Group 05 WebGIS</strong><br>
     Turn WMS layers on/off using the layer control.<br>
     WMS URL: ${wmsUrl}
+  `;
+  return div;
+};
+
+mapNote.addTo(map);
     // ===============================
 // Dynamic legend control
 // ===============================
@@ -232,8 +236,4 @@ map.on("overlayadd", updateLegend);
 map.on("overlayremove", updateLegend);
 
 updateLegend();
-  `;
-  return div;
-};
-
-mapNote.addTo(map);
+  
